@@ -1,0 +1,45 @@
+{% extends "blogservice/base.html" %}
+
+<div class="header">
+        <h1>{% block header %}{{ blog_title }}</h1>
+        <div class="header-items">
+            <div class="header-left">
+                {% for block in blocks %}
+                <li class="header-item"><a href="#">{{ block }}</a></li>
+                {% endfor %}
+            </div>
+            <div class="user_window">
+                <div class="user_elements">
+                    <p>{{ username }}</p></div>
+                <a href="create" class="btn_post_create">Create new post</a>
+            </div>
+        </div>
+
+{% endblock header %}
+  {% block content %}
+<div class="cards">
+    {% for post in posts %}
+        <div class="card">
+            <div class="card-top">
+
+                <h2>{{ post.title }}</h2>
+
+            </div>
+            <div class="descrption">
+                <p> {{ post.content }}</p>
+            </div>
+            <div class="card-bottom">
+                <span class="material-symbols-outlined">thumb_up</span><p>Likes: {{ post.likes }}</p>
+
+                <span class="material-symbols-outlined">visibility</span><p>Views: {{ post.post_views }}</p>
+
+                <a href="#" class="more">Подробнее</a>
+                <h6 class="created_date">{{ post.created_date }}</h6>
+            </div>
+        </div>
+
+    {% endfor %}</div>
+
+
+
+{% endblock content %}

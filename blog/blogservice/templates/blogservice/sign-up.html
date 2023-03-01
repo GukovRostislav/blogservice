@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up</title>
+</head>
+<body>
+
+
+    <form method="POST" action="{% url 'sign_up_e' %}">
+        {% csrf_token %}
+        <div class="block1">
+            <div class="inputs">
+
+            <h3>Email</h3>
+            <input type="email" class="title_post_input" name="email" maxlength="50" placeholder="Email" />
+
+            <h3>Login</h3>
+            <input type="text" class="title_post_input" name="login" maxlength="50" placeholder="Login" id="login" oninput="check_unique_login()"/>
+
+            <h3>Password</h3>
+            <input type="password" class="title_post_input" name="password" maxlength="50" placeholder="Password"  id="pw" oninput="myFunction()"/>
+            <h3>Password repeat</h3>
+
+            <input type="password" class="title_post_input" name="password_repeat" maxlength="50" placeholder="Password" id="pw1" oninput="myFunction()" />
+            <p id="demo"></p>
+        </div>
+            
+        <input type="submit" value="Sign up" class="submit_post" disabled="disabled" id="submit_post">
+                    </div>
+    </form>
+
+
+</body>
+</html>
+<style>
+    .block1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: Montserrat;
+        margin-top: 100px;
+       
+    
+    }
+    .inputs{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .title_post_input{
+        width: 350px;
+        border: solid 2px black;
+        border-radius: 3px;
+        height: 35px;
+        font-family:  Montserrat;
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: 30px;
+        margin-top: -15px;
+        
+    }
+    .text_post_input{
+        width: 350px;
+        border: solid 2px black;
+        border-radius: 3px;
+        height: 600px;
+        font-family:  Montserrat;
+        text-align: start;
+        font-size: 15px;
+        vertical-align: bottom;
+        padding: 15px;
+    }
+    .submit_post{
+        width: 150px;
+        height: 30px;
+        margin: 20px;
+        background-color:  black;
+        color: rgb(255, 247, 231);
+        font-size: 17px;
+        border: solid 2px black;
+        border-radius: 3px;
+        font-weight: bold;
+        transition: 0.25s;
+    }
+    .submit_post:hover{
+        background-color: whitesmoke;
+        color: black;
+        transition: 0.25s;
+    }
+    .btn_post_create{
+        padding: 2px;
+        border: solid 2px white;
+        border-radius: 3px;
+        font-family:  Montserrat;
+        transition: 0.25s;
+    }
+    .btn_post_create:hover{
+        color: black;
+        background-color: white;
+        transition: 0.25s;
+    }
+    #demo{
+        margin-top: -30px;
+        margin-bottom: 20px;
+        margin-right: 300px;
+        font-size: small;
+        font-weight: bold;
+        text-align: start;
+        transition: 1s;
+        
+    }
+    
+    </style>
+
+
+<script>    
+    function myFunction() {
+        if (document.getElementById("pw").value == document.getElementById("pw1").value){
+            document.getElementById("demo").innerHTML = "Good";
+            document.getElementById('submit_post').disabled = false;
+            document.getElementById('demo').style.color = 'green';
+        }
+        else if (document.getElementById("pw").value == ''){
+            document.getElementById("demo").innerHTML = "None";
+            document.getElementById('demo').style.color = 'black';
+        }
+        else if (document.getElementById("pw1").value == ''){
+            document.getElementById("demo").innerHTML = "None";
+            document.getElementById('demo').style.color = 'black';
+        }
+        else{
+            document.getElementById("demo").innerHTML = "shit";
+            document.getElementById('submit_post').disabled = true;
+            document.getElementById('demo').style.color = 'red';
+        }
+}
+function check_unique_login() {
+const xhr = new XMLHttpRequest();
+let r = document.getElementById('login').value;
+//console.log(r);
+//console.log(r);
+let check_url = `http://127.0.0.1:8000/users/${r}`;
+console.log(check_url);
+xhr.open("GET", check_url);
+console.log(xhr.status)
+
+xhr.send();
+xhr.responseType = "json";
+xhr.onload = () => {
+ if (xhr.readyState == 4 && xhr.status == 204) {
+    const data = xhr.response;
+    console.log(xhr.status);
+    document.getElementById('login').style.color = 'blue';
+  } else {
+    console.log(xhr.status);
+    document.getElementById('login').style.color = 'red';
+  }
+  
+};
+}
+</script>

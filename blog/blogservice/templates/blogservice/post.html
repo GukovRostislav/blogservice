@@ -1,0 +1,253 @@
+{% extends "blogservice/base.html" %}
+{% block content %}
+  <div class="post_block">
+  <h1>{{ post_title }}</h1>
+  <img src="/media/{{post_preview}}" alt="">
+  <p>
+{{ post_content }}
+  </p>
+  
+
+
+  <h2 id="author">Author: {{ post_author }}</h2>
+
+  {% if author_of_post %}
+ 
+  <a href="{% url 'post_edit' post_info %}" class="btn-edit-post" id="post-edit">Edit post</a>
+  
+
+  {% else %}
+  <a href="#" class="btn_sign_in" id="sign_in" style="display: none;">Sign in</a>
+  {% endif %}
+
+
+    {% if is_authenticated %}
+      {% if is_liked %}
+        <div class="likes" name="likes">
+        <span for="likes" class="material-symbols-outlined" id="thumb_up" style="color:rgb(199, 5, 5)">thumb_up</span>
+        <p id="likes">{{ post_likes }}</p></div>
+      {% else %}
+      <div class="likes" name="likes" onclick="a()">
+        <span for="likes" class="material-symbols-outlined" id="thumb_up">thumb_up</span>
+        <p id="likes">{{ post_likes }}</p></div>
+      {% endif %}
+
+
+      <form method="POST" enctype="multipart/form-data" action="{% url 'add_comment' post_id %}">
+        {% csrf_token %}
+
+      <div class="leave-comment">
+        {{ form }}
+      </div>
+
+        <input type="submit" value="Leave a comment" class="btn-leave-comment">
+      
+      </form>
+
+
+    {% endif %}
+</div>
+
+
+<div class="comments">
+  {% for comment in comments %}
+  <div class="comment">
+    <h2 class="author" id="author_of_comment">{{ comment.author }}</h3>
+    <p class="text">
+      {{ comment.content }}
+    </p>
+  </div>
+  {% endfor %}
+</div>
+
+
+    </div>
+<style>
+
+  .btn-leave-comment{
+    padding: 2px;
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 3px;
+    font-family:  Montserrat;
+    transition: 0.25s;
+    height: 25px;
+    width: 130px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    text-align: center;
+    margin-right: 7px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.753);
+  }
+  .btn-leave-comment:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    transition: 0.25s;
+  }
+
+
+  #id_content{
+    width: 50vw;
+    height: 150px;
+    padding: 4px;
+    font-family: Montserrat;
+    font-size: 15px;
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.753);
+  }
+
+  label{
+    display: none;
+  }
+
+  #author_of_comment{
+    margin-bottom: 5px;
+    font-size: medium;
+  }
+
+  .leave-comment{
+    margin-top: 35px;
+  }
+
+  .comment{
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.158);
+    border-radius: 3px;
+    margin-top: 25px;
+    width: 750px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.753);
+  }
+  
+  .comments{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 200px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-family: Montserrat;
+
+  }
+
+  .text{
+    max-width: 750px;
+    margin-top: 5px;
+    font-size: 75;
+  }
+
+  .post_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    font-family: Montserrat;
+
+  }
+  #author{
+    margin-left: 150px;
+  }
+  p{
+    margin-top: 30px;
+  white-space: pre-wrap;
+  width: 50vw;
+  font-size: large;
+  }
+  .btn-edit-post{
+    padding: 2px;
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 3px;
+    font-family:  Montserrat;
+    transition: 0.25s;
+    height: 15px;
+    width: 80px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    text-align: center;
+    margin-right: 7px;
+    color: black;
+  }
+  .btn-edit-post:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    transition: 0.25s;
+  }
+  #thumb_up{
+margin-right: 15px;
+transition: 500ms;
+cursor: pointer;
+font-variation-settings:
+          'FILL' 1,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48
+  }
+#thumb_up:hover{
+  color: rgb(199, 5, 5); 
+ 
+transition: 500ms;
+  font-variation-settings:
+          'FILL' 1,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48
+}
+#thumb_up:checked{
+color: red;
+}
+#thumb-up:checked{
+  color: red;
+}
+  #likes{
+    text-align: start;
+    margin-left: 7px;
+    margin: 0;
+  }
+  .likes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
+
+<script>
+console.log('{{ is_liked }}');
+
+var like_status = false;
+
+function a(){
+  const note = document.querySelector('.likes');
+  note.style.color = 'red';
+  let ff = document.getElementById('likes').innerHTML
+  ff = parseInt(ff)
+  if  (like_status==false){
+    document.getElementById("likes").innerHTML = ff+1;  
+  }
+    like_status = true;
+ }
+
+if ('{{ is_liked }}' == 'False') {
+
+
+var xhr = new XMLHttpRequest();
+var url = "http://127.0.0.1:8000/likes/{{ user_id }}/{{ post_id }}";
+console.log(url);
+xhr.open("GET", url);
+xhr.send();
+xhr.responseType = "json";
+xhr.onload = () => {
+ if (xhr.readyState == 4 && xhr.status == 200) {
+    const data = xhr.response;
+  }
+   else if (xhr.readyState == 4 && xhr.status == 204) {
+    const note = document.querySelector('.likes');
+  note.style.color = 'red';
+  }
+  
+};
+}
+
+</script>
+
+{% endblock content %}

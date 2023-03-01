@@ -1,0 +1,82 @@
+{% extends "blogservice/base.html" %}
+{% block content %}
+<body>
+
+</body>
+
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(36, 36, 36);
+    color: white;
+}
+
+.header-items{
+    margin-left: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+}
+.header-item{
+    margin-left: 40px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: beige;
+}
+
+a:active{
+    color: bisque;
+}
+.card{
+    display: block;
+    width: 45vw;
+    height: min-content;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 5px;
+    border: 2px solid rgb(54, 54, 54);
+    margin: 20px;
+    border-radius: 10px;
+    background-color:rgb(235, 235, 235);
+}
+.card-top{
+    padding: 10px;
+}
+.card-bottom{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50%;
+    padding-top: 10px;
+}
+
+.cards{
+display:flex;
+justify-content:center;
+align-items: center;
+
+}
+.more{
+    border: 2px solid black;
+    background-color: rgb(54, 54, 54);
+    border-radius: 3px;
+    margin-left: 10px;
+}more:hover{
+    border: 3px solid rgb(71, 71, 71);
+}
+</style>
+{% endblock content %}

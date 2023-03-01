@@ -1,0 +1,155 @@
+{% extends "blogservice/base.html" %}
+{% block content %}
+    <div class="user">
+        <img src="" alt="" class="avatar">
+        <h1 class="nickname">nickname</h1>
+
+    </div>
+
+    <div class="change-password">
+        <h3>Current password</h3>
+        <input type="password" class="title_post_input" name="old_password" maxlength="50" placeholder="Password"  id="pw" oninput="myFunction()"/>
+
+        <h3>New password</h3>
+        <input type="password" class="title_post_input" name="new_password" maxlength="50" placeholder="Password" id="pw1" oninput="myFunction()" />
+
+        <input type="submit" value="Change password" class="submit_pw" disabled="disabled" id="submit_post">
+    </div>
+
+    <div class="posts">
+        <h2 class="user-posts">My posts</h2>
+
+
+
+        <div class="card_2">
+            <div class="card-top_2">
+
+                <h2>TITLE</h2>
+
+            </div>
+            <div class="descrption_2">
+                <p class="pp"> fgdgdgd hac habitasse platea dictumst. Donec eget nunc at nisl mollis aliquam. Praesent rutrum turpis lacus, ac congue tellus commodo at. Sed sed neque libero. Aenean pharetra, orci eu dignissim rutrum, odio ipsum vulputate dui, ultricies tincidunt leo velit eget magna. Fusce vehicula consectetur venenatis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec vitae turpis aliquet, sagittis nulla a, bibendum libero. Maecenas laoreet erat in dui sagittis ullamcorper. Mauris suscipit nulla dapibus nisl aliquam lacinia. Nunc a turpis semper, porta mi sit amet, finibus nibh. Nunc eleifend nisl augue, a iaculis urna sagittis ultricies. Cras vel risus pellentesque lacus placerat bibendum eu nec purus.
+                </p>
+            </div>
+            <div class="card-bottom_2">
+                <span class="material-symbols-outlined">thumb_up</span><p>Likes: {}</p>
+
+                <span class="material-symbols-outlined">visibility</span><p>Views: {}</p>
+
+                <h6 class="created_date">{}</h6>
+            </div>
+        </div>
+
+
+        <a href='#' class="btn_post_create_2">Create new post</a>
+    </div>
+    <style>
+        body{
+            font-family: Montserrat;
+        }
+        a{
+            text-decoration: none;
+        }
+        h3{
+            margin: 15px;
+        }
+        .change-password{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .title_post_input{
+            width: 350px;
+            border: solid 2px black;
+            border-radius: 3px;
+            height: 35px;
+            font-family:  Montserrat;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 30px;
+            margin-top: -15px;
+            
+        }
+        .text_post_input{
+            width: 350px;
+            border: solid 2px black;
+            border-radius: 3px;
+            height: 600px;
+            font-family:  Montserrat;
+            text-align: start;
+            font-size: 15px;
+            vertical-align: bottom;
+            padding: 15px;
+        }
+        .submit_pw{
+            margin: 20px;
+            background-color:  black;
+            color: rgb(255, 247, 231);
+            font-size: 17px;
+            border: solid 2px black;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: 0.25s;
+            padding: 5px;
+        }
+        .submit_pw:hover{
+            background-color: whitesmoke;
+            color: black;
+            transition: 0.25s;
+        }
+        .btn_post_create_2{
+            background-color: black;
+            color: rgb(255, 255, 255);
+            border: solid 2px rgb(0, 0, 0);
+            border-radius: 3px;
+            font-family:  Montserrat;
+            transition: 0.25s;
+            padding: 7px;
+        }
+        .btn_post_create_2:hover{
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+            border: solid 2px rgb(0, 0, 0);
+            transition: 0.25s;
+        }
+        .user{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-bottom: 150px;
+        }
+        .posts{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-top: 150px;
+        }
+        .user-posts{
+            margin-bottom: 25px;
+        }
+        .card_2{
+            width: 90vw;
+            height: 110px;
+            margin-bottom: 25px;
+            border: solid 2px rgb(0, 0, 0);
+            display: flex;
+            justify-content: left;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .card-bottom_2{
+            display: flex;
+            align-items: flex-end;
+        }
+        p{
+            height: 90px;
+            overflow: hidden;
+    text-overflow:  ellipsis " [..]";
+    white-space: pre-wrap;
+        }
+        </style>
+    
+{% endblock content %}

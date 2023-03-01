@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>
+<style>
+    @keyframes e{
+        0%{
+background-image: linear-gradient(red, green, blue);
+        }
+        25%{
+            background-image: linear-gradient(green, red, blue);
+        }
+        50%{
+            background-image: linear-gradient(blue, green, red);
+        }
+        75%{
+            background-image: linear-gradient(red, blue, green);
+        }
+        100%{
+            background-image: linear-gradient(red, green, blue);
+        }
+    }
+    div{
+        width: 400px;
+        height: 400px;
+        background-image: linear-gradient(red, green, blue);
+        animation-name: e;
+        transition: 1s;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        
+    }
+    @keyframes f{
+        0%{
+            background-color: red;
+        }
+        25%{
+            background-color: green;
+        }
+        50%{
+            background-color: blue;
+        }
+        75%{
+            background-color: red;
+        }
+        100%{
+            background-color: red;
+        }
+    }
+    div{
+        width: 400px;
+        height: 400px;
+        background-image: linear-gradient(red, green, blue);
+        animation-name: e;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        
+    }
+</style>

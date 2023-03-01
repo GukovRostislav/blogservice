@@ -1,0 +1,359 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{{ title }}{% endblock title %}</title>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="site_name">{% block header %}{{ blog_title }}</h1>
+        <div class="header-items">
+            <div class="header-left">
+                {% for block in blocks %}
+                <li class="header-item"><a href="{{block.link}}">{{ block.name }}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="user_window">
+            <div class="user_elements">
+
+            </div>
+<div class="href">
+
+    {% if not is_authenticated %}
+    <a href="{% url 'sign_in' %}" class="btn_sign_in" id="sign_in">Sign in</a>
+    {% else %}
+    <a href="{% url 'create_post' %}" class="btn_post_create" id='add_post'>Create new post</a>
+    <a href="{% url 'log_out' %}" class="btn_post_create" id='log_out' style="margin-top: 3px;" onclick="c()">Log out</a>
+    {% endif %}
+
+</div>
+
+            </div>
+    {% endblock header %}
+    </div>
+    <div class="cont">{% block content %}{% endblock content %}</div>
+</body>
+</html>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    font-family:  Montserrat;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    height: 60px;
+    width: 100vw;
+    position: fixed;
+    margin-top: -100px;
+}
+
+.header-items{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    font-size: 25px;
+}
+
+.header-left{
+    display: flex;
+    flex-direction: row;
+}
+.header-item{
+    margin-left: 40px;
+}
+.site_name{
+    margin-top: -6px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: beige;
+}
+
+a:active{
+    color: bisque;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 500px;
+    font-family: Montserrat;
+    padding: 5px;
+    border: 2px solid rgb(54, 54, 54);
+    margin: 20px;
+    border-radius: 3px;
+    background-color:rgb(235, 235, 235);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.753);
+}
+.cont{
+    margin-top: 100px;
+}
+.card-top{
+    padding: 10px;
+}
+.card-bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 10px;
+
+}
+
+.cards{
+display:flex;
+justify-content:center;
+align-items: center;
+padding: 30px;
+flex-wrap: wrap;
+
+}
+.more{
+    border: 2px solid black;
+    background-color: rgb(54, 54, 54);
+    border-radius: 3px;
+    margin: 10px;
+
+    padding: 5px;
+    margin-bottom: 15px;
+    margin-top: -7px;
+}
+.more:hover{
+    border: 2px solid rgb(71, 71, 71);
+}
+
+
+
+
+
+
+  *{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    font-family: Montserrat;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    box-shadow: 0px 0px 5px black;
+
+}
+
+.header-items{
+    margin-left: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+}
+.header-item{
+    margin-left: 40px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: beige;
+}
+
+a:active{
+    color: bisque;
+}
+.material-symbols-outlined {
+    margin-right: 3px;
+    margin-top: -2px;
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48
+
+
+        }
+
+
+
+        .material-symbols-outlined-1 {
+    margin-right: 3px;
+    margin-top: -2px;
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48
+
+
+        }
+
+
+
+.description{
+    height: 350px;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+}
+.created_date{
+    margin: 0;
+    margin-right: 28px;
+}
+.user_window{
+    font-size: 13px;
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+.user_elements{
+    margin-left: 16px;
+
+
+}
+
+.block1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+
+}
+.inputs{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.title_post_input{
+    width: 350px;
+    border: solid 2px black;
+    border-radius: 3px;
+    height: 25px;
+    font-family:  Montserrat;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+
+}
+.text_post_input{
+    width: 350px;
+    border: solid 2px black;
+    border-radius: 3px;
+    height: 600px;
+    font-family:  Montserrat;
+    text-align: start;
+    font-size: 15px;
+    vertical-align: bottom;
+    padding: 15px;
+}
+.submit_post{
+    width: 150px;
+    height: 30px;
+    margin: 20px;
+    background-color:  black;
+    color: rgb(255, 247, 231);
+    font-size: 17px;
+    border: solid 2px black;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+.submit_post:hover{
+    background-color: whitesmoke;
+    color: black;
+    transition: 0.25s;
+}
+.btn_post_create{
+    padding: 2px;
+    border: solid 2px white;
+    border-radius: 3px;
+    font-family:  Montserrat;
+    transition: 0.25s;
+    height: 15px;
+    width: max-content;
+    margin-right: 7px;
+    text-align: center;
+}
+.btn_post_create:hover{
+    color: black;
+    background-color: white;
+    transition: 0.25s;
+}
+
+
+.btn_sign_in{
+    padding: 2px;
+    border: solid 2px white;
+    border-radius: 3px;
+    font-family:  Montserrat;
+    transition: 0.25s;
+    height: 15px;
+    width: 80px;
+    margin-top: 5px;
+    text-align: center;
+    margin-right: 7px;
+
+}
+.btn_sign_in:hover{
+    color: black;
+    background-color: white;
+    transition: 0.25s;
+}
+.href{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+p{
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+</style>
+
+
+
+<script>
+    console.log(document.cookie)
+</script>

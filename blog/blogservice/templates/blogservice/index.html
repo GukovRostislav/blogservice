@@ -1,0 +1,35 @@
+{% extends "blogservice/base.html" %}
+{% block content %}
+<div class="cards">
+    {% for post in posts %}
+        <div class="card">
+            <div class="card-top">
+
+                <h2>{{ post.title }}</h2>
+
+            </div>
+            <div class="descrption">
+                <p class="pp"> {{ post.content }}</p>
+            </div>
+            <div class="card-bottom">
+                <span class="material-symbols-outlined">thumb_up</span><p>Likes: {{ post.likes }}</p>
+
+                <span class="material-symbols-outlined">visibility</span><p>Views: {{ post.post_views }}</p>
+
+                <a href="{% url 'post_show' post.id %}" class="more">Подробнее</a>
+                <h6 class="created_date">{{ post.created_date }}</h6>
+            </div>
+        </div>
+
+    {% endfor %}</div>
+
+
+<style>
+    .pp{
+    height: 345px;
+    overflow: hidden;
+    text-overflow:  ellipsis " [..]";
+    white-space: pre-wrap;
+}
+</style>
+{% endblock content %}

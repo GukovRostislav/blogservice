@@ -1,0 +1,47 @@
+{% extends "blogservice/base.html" %}
+{% block content %}
+<form method="POST" action="{% url 'post_edit' id %}" class="block1">
+    {% csrf_token %}
+    <div class="inputs">
+    <textarea id="id_title" name="title">{{ post_title }}</textarea>
+    <textarea id="id_content" name="content">{{ post_content }}</textarea>
+        </div>
+<input type="submit" value="Save changes" class="submit_post">
+    </form>
+
+<style>
+
+.title_post_input{
+    width: 400px;
+    border: solid 5px black;
+}
+
+label{
+font-family: Montserrat;
+margin-top: 20px;
+font-weight: bold;
+font-size: large;
+}
+#id_title{
+    width: 350px;
+    border: solid 2px black;
+    border-radius: 3px;
+    height: 25px;
+    font-family:  Montserrat;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+}
+#id_content{
+    width: 350px;
+    border: solid 2px black;
+    border-radius: 3px;
+    height: 600px;
+    font-family:  Montserrat;
+    text-align: start;
+    font-size: 15px;
+    vertical-align: bottom;
+    padding: 15px;
+}
+</style>
+{% endblock content %}
